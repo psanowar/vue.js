@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue Js</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body>
+
+	<div class="app">
+		
+		<input type="text" v-model="data.name">
+		<p :class="data.className" :title="data.name">Your name is: {{ data.name }}</p>
+
+		<a :href="data.profile.url" :title="data.profile.title">{{ data.profile.name }}</a>
+
+		<div class="card">
+			
+		</div>
+
+		<div class="content">
+			<h1 v-if="!data.show">Show </h1>
+			<h1 v-else>Hide </h1>
+		</div>
+		<div v-html="data.test">
+		
+		
+			<ul>
+				<li v-for="skill in data.skills">{{skill}}</li>
+			</ul>
+
+
+	</div>
+
+		
+
+
+
+	<script type="text/javascript" src="js/vue.global.js"></script>
+	 <script>
+	  let { createApp } = Vue
+
+	  createApp({
+	    data() {
+	      return {
+	        data: {
+	        	name: "Sanowar Hossain",
+	        	it:" Information Tecnology",
+	        	profile: {
+	        		name: "facebook",
+	        		title: "Go to facebook",
+	        		url: "https://www.facebook.com/",
+	        	},
+	        	className: "active",
+
+	        	show: false,
+	        	test: '<a href="">test</a>',
+	        	skills: ["html","css","js","php"]
+
+
+
+	        }
+	      }
+	    }
+	  }).mount('.app')
+	</script>
+
+
+</body>
+</html>
