@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue Js</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body>
+
+	
+
+	<div id="app">
+		
+		<!-- <input type="checkbox" value="a" v-model="checkbox">A
+		<input type="checkbox" value="b" v-model="checkbox">B
+		<input type="checkbox" value="c" v-model="checkbox">C
+		<input type="checkbox" value="d" v-model="checkbox">D
+		<br>
+		
+		Check Name: {{ checkbox }} -->
+
+		<input type="text" placeholder="New item" v-model="items">
+		<button @click="addNewItem">Add item</button>
+
+		<br>
+		<br>
+		<button @click="ascAssending">ASC</button>
+		<button @click="dscDesending">DSC</button>
+
+		<ul>
+			<li v-for="(skill, index) in skills">{{ skill }}
+			<br>
+			<button @click="removeItem(index)">Remove</button></li>
+			
+ 
+		</ul>
+
+		<div v-for="allbum in allbums">
+			<h4>{{ allbum.title }}</h4>
+			<p>{{ allbum.body }}</p>
+		</div>
+
+
+	</div>
+
+
+
+	<script type="text/javascript" src="js/vue.global.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
+	 <script>
+	  
+	 	  const { createApp } = Vue
+
+			  createApp({
+			    data() {
+			      return {
+			      	// checkbox: [],
+
+			      	allbums: {},
+			      	items: null,
+			        skills: ['Html', 'CSS', 'JavaScript', 'MySQL','PHP' ]
+			      }
+
+
+			    },
+			     methods: {
+			     	addNewItem(){
+			     		if(this.items === null){
+			     			alert('Input Field is Empty');
+			     		}
+			     		else{
+			     			this.skills.push(this.items);
+			     			this.items = null;
+			     		}
+				
+			     	},
+
+			     	removeItem(index){
+			     		this.skills.splice(index, 1);
+			     	},
+
+			     	ascAssending(){
+			     		this.skills.sort();
+			     	},
+
+			     	dscDesending(){
+			     		this.skills.reverse();
+			     	},
+
+			     	getAllbums(){
+
+			     		let th = this;
+			     		axios.get("https://jsonplaceholder.typicode.com/posts")
+			     		.then(function(test){
+			     			th.allbums = test.data;
+			     		});
+			     	}
+			      },
+			      mounted(){
+			      	this.getAllbums();
+			      }
+
+			  }).mount('#app')
+
+	</script>			  
+
+
+</body>
+</html>
